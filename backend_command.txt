@@ -1,0 +1,4 @@
+To get jar file
+1.  install maven
+2. mvn clean install -- this will create JAR file (build)
+

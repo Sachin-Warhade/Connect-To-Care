@@ -20,7 +20,7 @@ const About = () => {
           Regards, from creators:
           <ul>
             <li>Saikumar Padige</li>
-            <li>Sachin Warhade</li>
+            <li>Sachin A. Warhade</li>
             <li>Vipul Patil</li>
             <li>Saurabh Kulkarni</li>
             <li>Lalna Barhate</li>

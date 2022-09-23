@@ -7,10 +7,19 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.1",
+<<<<<<< HEAD
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+=======
+    "jquery": "^3.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.4.0",
+    "react-scripts": "^5.0.1",
+>>>>>>> e29590daa12f4ad44b26b3ae3d9a8bc1af0b2959
     "web-vitals": "^2.1.4"
   },
   "scripts": {

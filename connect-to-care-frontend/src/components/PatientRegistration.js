@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-function AddDoctor(){
+function PatientRegistration(){
     const navigate = useNavigate();
     const [city,setCity]=useState([]);
     const [area,setArea]=useState([]);
@@ -270,16 +270,16 @@ function AddDoctor(){
                     areaId:data.areaId
                 })
             }
-            fetch("http://localhost:8080/savedoctor",reqOptions)
+            fetch("http://localhost:8080/savepatient",reqOptions)
             .then(resp=>resp.text())
             .then(data=> {if(data.length !== 0)
                 {
-                    alert("New Doctor added successfully!!!");
+                    alert("Registration successfully!!!");
                     navigate('/admin');
                 }
                 else{
                     alert("Failed!!!");
-                    navigate('/adddoctor');
+                    navigate('/PatientRegistration');
                     //window.location.reload();
                 }
             })
@@ -287,7 +287,7 @@ function AddDoctor(){
         else{
             alert("All fields are compulsory and must follow guidelines");
                 // window.location.reload();
-                navigate('/adddoctor');
+                navigate('/PatientRegistration');
         }
 
     }
@@ -444,5 +444,5 @@ function AddDoctor(){
     );
 
 }
-export default AddDoctor;
+export default PatientRegistration;
 

@@ -16,19 +16,6 @@ const ViewHealthTimeline = () => {
 
     return (
         <div className='container'>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container">
-                    <div className="navbar-header">
-                        <NavLink className="navbar-brand" to="/">Connect To Care</NavLink>
-                    </div>
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item"><NavLink className="nav-link active" to="/">Home</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/healthtimelinelist">healthtimeline List</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/hospitallist">Hospital List</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/doctorlist">Doctor List</NavLink></li>
-                    </ul>
-                </div>
-            </nav>
             <h2 className='text-ceter'>Health Timelines</h2>
             <table className='table table-bordered table-striped'>
                 <thead>

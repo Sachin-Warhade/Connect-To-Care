@@ -135,12 +135,12 @@ function HealthTimeline(){
                     remark:data.remark
                 })
             }
-            fetch("http://localhost:8080/savedoctor",reqOptions)
+            fetch("http://localhost:8080/savehealthtimeline",reqOptions)
             .then(resp=>resp.text())
             .then(data=> {if(data.length !== 0)
                 {
                     alert("Health Timeline added successfully!!!");
-                    navigate('/admin');
+                    navigate('/doctor');
                 }
                 else{
                     alert("Failed!!!");

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CreateSlot(){
     const [timetable,setTimetable]=useState({
-        ttId: "",
+        slotId: "",
         doctor_id: {},
         weekday:"",
         startTime: "",
@@ -14,7 +14,7 @@ function CreateSlot(){
     })
     /*useEffect(() => {
         const tt= JSON.parse(sessionStorage.getItem("daytimetable"));
-        setTimetable({ttId:tt.ttId,doctor_id:tt.doctor_id,weekday:tt.weekday,startTime:tt.startTime,endTime:tt.endTime,slotDuration:tt.slotDuration,breakTime:tt.breakTime,status:tt.status})
+        setTimetable({slotId:tt.slotId,doctor_id:tt.doctor_id,weekday:tt.weekday,startTime:tt.startTime,endTime:tt.endTime,slotDuration:tt.slotDuration,breakTime:tt.breakTime,status:tt.status})
         
     },[]);*/
     const navigate=useNavigate();
@@ -43,7 +43,7 @@ function CreateSlot(){
                 'Content-Type':'application/json'
             },
             body : JSON.stringify({
-                ttId: timetable.ttId,
+                slotId: timetable.slotId,
                 doctor_id: timetable.doctor_id,
                 weekday: timetable.weekday,
                 startTime: timetable.startTime,

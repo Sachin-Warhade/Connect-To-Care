@@ -1,0 +1,44 @@
+package com.cdac.project.entities;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Parameter {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int parameterId;
+	
+	@Column(name = "height")
+	String height;
+	
+	@Column(name = "weight")
+	String weight;
+
+	@Column(name = "bmi")
+	String bmi;
+	
+	@Column(name = "hb")
+	String hb;
+	
+	@Column(name = "blood_pressure")
+	String blood_pressure;
+	
+	@Column(name = "blood_sugar")
+	String blood_sugar;
+	
+	@Column(name = "blood_group")
+	String blood_group;
+
+	public Parameter() {
+		super();
+	}
+	
+	
+}

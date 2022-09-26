@@ -1,0 +1,95 @@
+package com.cdac.project.entities;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class HealthTimeline {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int healthId;
+	
+	@Column(name = "date")
+	Date date;
+	
+	@Column(name = "symptoms")
+	String symptoms;
+
+	@Column(name = "medicines")
+	String medicines;
+	
+	@Column(name = "advice")
+	String advice;
+	
+	@Column(name = "remark")
+	String remark;
+	
+	public HealthTimeline() {
+		super();
+	}
+
+	public HealthTimeline(int healthId, Date date, String symptoms, String medicines, String advice, String remark) {
+		super();
+		this.healthId = healthId;
+		this.date = date;
+		this.symptoms = symptoms;
+		this.medicines = medicines;
+		this.advice = advice;
+		this.remark = remark;
+	}
+
+	public int getHealthId() {
+		return healthId;
+	}
+
+	public void setHealthId(int healthId) {
+		this.healthId = healthId;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getSymptoms() {
+		return symptoms;
+	}
+
+	public void setSymptoms(String symptoms) {
+		this.symptoms = symptoms;
+	}
+
+	public String getMedicines() {
+		return medicines;
+	}
+
+	public void setMedicines(String medicines) {
+		this.medicines = medicines;
+	}
+
+	public String getAdvice() {
+		return advice;
+	}
+
+	public void setAdvice(String advice) {
+		this.advice = advice;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	
+}

@@ -1,0 +1,86 @@
+package com.cdac.project.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cdac.project.entities.Area;
+import com.cdac.project.entities.Doctor;
+import com.cdac.project.entities.Hospital;
+import com.cdac.project.entities.Login;
+import com.cdac.project.repositories.HospitalRepository;
+
+public class HospitalService {
+
+	@Autowired
+	HospitalRepository hrepo;
+	
+//	@Autowired
+//	JavaMailSender jms;
+	
+	//fetch patient by login details
+	public Hospital getOneByLoginId(Login id) {
+		return hrepo.getOneByLoginId(id);
+	}
+	public Hospital saveDoctor(Hospital h) {	
+		Hospital hh = hrepo.save(h);
+		if(dd != null) {
+//			SimpleMailMessage smm = new SimpleMailMessage();
+//			smm.setFrom("connecttoyourdoctor@gmail.com");
+//			smm.setTo(d.getLogin_id().getUser_name());
+//			System.out.println("--**$$"+d.getLogin_id().getUser_name());
+//			smm.setSubject("Registration Mail");
+//			Date day = new Date();
+//			smm.setText("Registration Successful "+day);
+//			jms.send(smm);
+			return hh;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public Hospital updateDoctor(Hospital h) {
+		// TODO Auto-generated method stub
+		try {
+			return hrepo.save(h);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+	//fetch Doctor by it's id
+	public Optional<Hospital> getOneHospital(int id) {
+		// TODO Auto-generated method stub
+		return hrepo.findById(id);
+	}
+	public List<Hospital> allHospitals() {
+		return hrepo.findAll();
+		
+	}
+//	public List<Doctor> allDoctorsByState(int id) {
+//
+//		return drepo.getDoctorByState(id);
+//	}
+//	public List<Doctor> allDoctorsByCity(City c) {
+//		// TODO Auto-generated method stub
+//		return drepo.getDoctorByCity(c);
+//	}
+	public List<Hospital> allDoctorsByArea(Area a) {
+		// TODO Auto-generated method stub
+		return hrepo.getHospitalByArea(a);
+
+	}
+	public Hospital getOneById(int id) {
+		//return drepo.getOneById(id);
+		return hrepo.findById(id).get();
+	}
+	public List<Object> allDoctorsSpeciality() {
+		return hrepo.allHospitalsSpeciality();
+	}
+	public List<Hospital> allHospitalsAreaAndSpeciality(Area a, String spec) {
+		// TODO Auto-generated method stub
+		return hrepo.allHospitalsAreaAndSpeciality(a,spec);
+	}
+}

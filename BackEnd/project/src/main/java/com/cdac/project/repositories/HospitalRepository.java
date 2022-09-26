@@ -1,0 +1,28 @@
+package com.cdac.project.repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.cdac.project.entities.Area;
+import com.cdac.project.entities.Hospital;
+import com.cdac.project.entities.Login;
+
+@Repository
+public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
+	
+	@Query("select h from Hospital h where login_id = :id")
+	public Hospital getOneByLoginId(Login id);
+
+	@Query("select h from Hospital h where area_id = :a")
+	public List<Hospital> getHospitalByArea(Area a);
+
+	@Query("select DISTINCT(h.speciality) from Hospital h")
+	public List<Object> allHospitalsSpeciality();
+
+	@Query("select h from Hospital h where area_id = :a and speciality = :spec")
+	public List<Hospital> allHospitalsAreaAndSpeciality(Area a, String spec);
+
+}

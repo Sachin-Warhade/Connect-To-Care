@@ -1,0 +1,5 @@
+package com.cdac.project.entities;
+
+public class HospitalRegistration {
+
+}

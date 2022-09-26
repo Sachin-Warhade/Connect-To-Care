@@ -1,0 +1,106 @@
+package com.cdac.project.controllers;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cdac.project.entities.Area;
+import com.cdac.project.entities.Hospital;
+import com.cdac.project.entities.HospitalRegistration;
+import com.cdac.project.entities.Login;
+import com.cdac.project.services.AreaService;
+import com.cdac.project.services.CityService;
+import com.cdac.project.services.HospitalService;
+import com.cdac.project.services.LoginService;
+import com.cdac.project.services.StateService;
+
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
+public class HospitalController {
+
+	@Autowired
+	HospitalService hservice;
+	
+	@Autowired
+	LoginService lservice;
+	
+	@Autowired
+	AreaService aservice;
+	
+	@Autowired
+	StateService sservice;
+	@Autowired
+	CityService cservice;
+	
+	@GetMapping("/alldoctors")
+	public List<Hospital> allHospitals(){
+		return hservice.allHospitals();
+	}
+	
+//	@GetMapping("/alldoctorsbystate/{id}")
+//	public List<Doctor> allDoctorsByState(@PathVariable int id){
+//		return dservice.allDoctorsByState(id);
+//	}
+	
+//	@GetMapping("/alldoctorsbycity/{id}")
+//	public List<Doctor> allDoctorsByCity(@PathVariable int id){
+//		City c = cservice.getCityById(id);
+//		System.out.println(c);
+//		return dservice.allDoctorsByCity(c);
+//	}
+	
+	@GetMapping("/alldoctorsbyarea/{id}")
+	public List<Hospital> allDoctorsByArea(@PathVariable int id){
+		Area a = aservice.getAreaById(id);
+		return hservice.allHospitalsByArea(a);
+	}
+	
+	@GetMapping("/speciality")
+	public List<Object> allDoctorsSpeciality(){
+		return hservice.allHospitalsSpeciality();
+	}
+	
+	@GetMapping("/doctorsbyareaandspec/{areaId}/{spec}")
+	public List<Hospital> allDoctorsAreaAndSpeciality(@PathVariable int areaId, @PathVariable String spec){
+		Area a = aservice.getAreaById(areaId);
+		return hservice.allHospitalsAreaAndSpeciality(a,spec);
+	}
+	
+	@GetMapping("/getonedoctor/{id}")
+	public Optional<Hospital> getOneDoctor(@PathVariable int id) {
+		return hservice.getOneHospital(id);
+	}
+	
+	@PostMapping("/savedoctor")
+	public Hospital saveDoctor(@RequestBody HospitalRegistration dr) {
+		System.out.println("*******"+dr);
+		Login l = new Login(dr.getUserName(),dr.getPassword(),"Hospiatl");
+		Login inserted = lservice.saveUser(l);
+		Area area = aservice.getAreaById(dr.getAreaId());
+		//System.out.println(dr.getSpeciality());
+		if((inserted != null) && (area != null)) {
+			Hospital d = new Hospital(dr.getHospitalName(),dr.getMobileNumber(),dr.getSpeciality(),area,inserted);
+			return hservice.saveHospital(d);
+		}
+		else {
+			return null;
+		}
+	}
+	
+	@PostMapping("/updatedoctor")
+	public Hospital updateDoctor(@RequestBody Hospital dr) {
+		try {
+		return hservice.updateHospital(dr);
+		}
+		catch(Exception e) {
+			return null;
+		}
+	}
+}

@@ -1,0 +1,28 @@
+package com.cdac.project.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cdac.project.entities.HealthTimeline;
+import com.cdac.project.entities.Patient;
+import com.cdac.project.repositories.HealthTimelineRepository;
+
+@Service
+public class HealthTimeLineService {
+
+	@Autowired
+	HealthTimelineRepository healthrepo;
+	
+	//fetch parameter by patient id
+	public HealthTimeline getParameter(Patient id) {
+		return healthrepo.getHealthTimeline(id);
+	}
+	
+	public HealthTimeline updateHealthTimeline(HealthTimeline h) {
+		try {
+			return healthrepo.save(h);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+}

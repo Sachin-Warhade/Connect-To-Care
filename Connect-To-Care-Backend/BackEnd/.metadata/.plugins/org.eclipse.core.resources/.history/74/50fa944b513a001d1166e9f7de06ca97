@@ -1,0 +1,22 @@
+package com.cdac.project.entities;
+
+public class HospitalRegistration {
+	String userName;
+	String password;
+	String hospitalName;
+	String mobileNumber;
+	String speciality;
+	int areaId;
+	
+	public HospitalRegistration(String userName, String password, String hospitalName, String mobileNumber,
+			String speciality,int areaId) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.hospitalName = hospitalName;
+		this.mobileNumber = mobileNumber;
+		this.speciality = speciality;
+		this.areadId = areaId;
+	}
+
+}

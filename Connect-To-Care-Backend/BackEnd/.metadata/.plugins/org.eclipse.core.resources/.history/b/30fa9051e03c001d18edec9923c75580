@@ -1,0 +1,38 @@
+package com.cdac.project.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.cdac.project.entities.Parameter;
+import com.cdac.project.entities.Patient;
+import com.cdac.project.repositories.ParameterRepository;
+
+@Service
+public class ParameterService {
+	
+	@Autowired
+	ParameterRepository pararepo;
+	
+	public Parameter saveParameter(@RequestBody Parameter p) {
+		try {
+			return pararepo.save(p);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	//fetch parameter by patient id
+	public Parameter getParameter(Parameter id) {
+		return pararepo.getParameter(id);
+	}
+	
+	public Parameter updateParameter(Parameter p) {
+		try {
+			return pararepo.save(p);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+}

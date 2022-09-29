@@ -1,0 +1,8 @@
+.checked {
+    color: rgb(233, 163, 0);
+    font-size: 40px;
+}
+
+.unchecked {
+    font-size: 40px;
+}

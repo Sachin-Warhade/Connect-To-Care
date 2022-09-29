@@ -1,0 +1,5 @@
+package com.cdac.project.services;
+
+public class SlotsService {
+
+}

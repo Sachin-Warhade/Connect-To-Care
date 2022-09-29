@@ -1,0 +1,38 @@
+.login {
+ 
+    position: fixed; 
+    top: 0;
+    left: 0; 
+    /* Preserve aspet ratio */
+    width: 100%;
+    height: 100%;
+
+    background-image: url("/public/assets/LOGINBACK.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .update{
+    position: fixed;
+      top: 0;
+      left: 0;
+      /* Preserve aspet ratio */
+      width: 100%;
+      height: 100%;
+    background-image: url("/public/assets/UDBACK.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .updatePara{
+          position: fixed;
+          top: 0;
+          left: 0;
+          /* Preserve aspet ratio */
+          width: 100%;
+          height: 100%;
+          background-image: url("/public/assets/PARABACK11.jpg");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+}
+

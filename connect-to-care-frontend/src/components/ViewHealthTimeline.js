@@ -1,42 +1,29 @@
-import React, {useState, useEffect} from 'react';
-import { NavLink } from 'react-router-dom';
-
-const healthtimeline_url = 'http://localhost:8080/healthtimeline';
+import React, { useState, useEffect } from 'react';
 
 const ViewHealthTimeline = () => {
 
     const [timelines, setTimelines] = useState([]);
 
+    let patient = JSON.parse(sessionStorage.getItem("patient"));
+    const p_Id = patient.patient_id;
+
     useEffect(() => {
-        fetch(healthtimeline_url)
-        .then(r => r.json())
-        .then(d => setTimelines(d));
+        fetch("http://localhost:8080/healthtimelinebypatient/" + p_Id)
+            .then(r => r.json())
+            .then(d => setTimelines(d));
         console.log(timelines);
-    });
+    }, []);
 
     return (
-        <div className='container'>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container">
-                    <div className="navbar-header">
-                        <NavLink className="navbar-brand" to="/">Connect To Care</NavLink>
-                    </div>
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item"><NavLink className="nav-link active" to="/">Home</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/healthtimelinelist">healthtimeline List</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/hospitallist">Hospital List</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/doctorlist">Doctor List</NavLink></li>
-                    </ul>
-                </div>
-            </nav>
+        <div className='container' style={{ marginBottom: "50px", marginTop: "60px" }} >
             <h2 className='text-ceter'>Health Timelines</h2>
             <table className='table table-bordered table-striped'>
-                <thead>
+                <thead className='bg-dark text-light'>
                     <tr>
                         <th>Date</th>
                         <th>Symptoms</th>
-                        <th>Medicines</th>
                         <th>Advice</th>
+                        <th>Medicines</th>
                         <th>Remark</th>
                     </tr>
                 </thead>
@@ -44,13 +31,13 @@ const ViewHealthTimeline = () => {
                     {
                         timelines.map(
                             healthtimeline =>
-                            <tr key = {healthtimeline.id}>
-                                <td>{healthtimeline.date}</td>
-                                <td>{healthtimeline.symptom}</td>
-                                <td>{healthtimeline.medicine}</td>
-                                <td>{healthtimeline.advice}</td>
-                                <td>{healthtimeline.remark}</td>
-                            </tr>
+                                <tr key={healthtimeline.id}>
+                                    <td>{healthtimeline.date}</td>
+                                    <td>{healthtimeline.symptoms}</td>
+                                    <td>{healthtimeline.advice}</td>
+                                    <td>{healthtimeline.medicines}</td>
+                                    <td>{healthtimeline.remark}</td>
+                                </tr>
                         )
                     }
                 </tbody>

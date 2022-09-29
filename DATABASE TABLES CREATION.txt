@@ -1,0 +1,339 @@
+create database connect_to_care;
+
+use connect_to_care;
+
+
+LOGIN
+-------------------------------------------------------------------------------
+PK	Id
+UK	Username (Email)
+	Password
+	Role
+
+Create Table Login
+(
+	Id int NOT NULL AUTO_INCREMENT,
+	Username varchar(255) NOT NULL,
+	Password varchar(255) NOT NULL,
+	Role varchar(255) NOT NULL,
+	PRIMARY KEY (Id)
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`login` (`login_id`, `password`, `role`, `user_name`) VALUES ('1', 'sachin@123', 'Patient', 'sachin@gmail.com');
+INSERT INTO `connect_to_care`.`login` (`login_id`, `password`, `role`, `user_name`) VALUES ('2', 'saurabh@123', 'Doctor', 'saurabh@123');
+INSERT INTO `connect_to_care`.`login` (`login_id`, `password`, `role`, `user_name`) VALUES ('3', 'vipul@123', 'Dotor', 'vipul@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('4', 'doctor4@123', 'Doctor', 'doctor4@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('5', 'doctor5@123', 'Doctor', 'doctor5@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('6', 'doctor6@123', 'Doctor', 'doctor6@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('7', 'doctor7@123', 'Doctor', 'doctor7@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('8', 'doctor8@123', 'Doctor', 'doctor8@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('9', 'Hospital1@123', 'Hospital', 'Hospital1@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('10', 'Hospital2@123', 'Hospital', 'Hospital2@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('11', 'Hospital3@123', 'Hospital', 'Hospital3@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('12', 'Hospital4@123', 'Hospital', 'Hospital4@gmail.com');
+INSERT INTO `connect_to_care`.`Login` (`login_id`, `password`, `role`, `user_name`) VALUES ('13', 'Hospital5@123', 'Hospital', 'Hospital5@gmail.com');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+STATE
+-------------------------------------------------------------------------------
+PK	State_Id
+	State_Name
+
+create table state
+(
+	State_Id int NOT NULL AUTO_INCREMENT,
+	State_Name varchar(255) NOT NULL,
+	PRIMARY KEY (State_Id),
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`state` (`state_id`, `state_name`) VALUES ('1', 'Maharashtra');
+INSERT INTO `connect_to_care`.`state` (`state_id`, `state_name`) VALUES ('2', 'Telangana ');
+INSERT INTO `connect_to_care`.`state` (`state_id`, `state_name`) VALUES ('3', 'Gujrat');
+INSERT INTO `connect_to_care`.`state` (`state_id`, `state_name`) VALUES ('4', 'Madhya Pradesh');
+INSERT INTO `connect_to_care`.`state` (`state_id`, `state_name`) VALUES ('5', 'Uttar Pradesh');
+INSERT INTO `connect_to_care`.`state` (`state_id`, `state_name`) VALUES ('6', 'Bihar');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CITY
+-------------------------------------------------------------------------------
+PK	City_Id
+	City_Name
+FK	State_Id
+
+create table city
+(
+	City_Id int NOT NULL AUTO_INCREMENT,
+	City_Name varchar(255) NOT NULL,
+	State_Id int NOT NULL,
+	PRIMARY KEY (City_Id),
+	FOREIGN KEY (State_Id) REFERENCES state(State_Id)
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('1', 'Pune', '1');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('2', 'Nagpur', '1');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('3', 'Nijamabad', '2');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('4', 'Hydrabad', '2');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('5', 'Surat', '3');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('6', 'vadodara', '3');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('7', 'Indore', '4');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('8', 'Bhopal', '4');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('9', 'Prayagraj', '5');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('10', 'Ayodhya', '5');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('11', 'Patna ', '6');
+INSERT INTO `connect_to_care`.`city` (`city_id`, `city_name`, `state_id`) VALUES ('12', 'Gaya', '6');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+AREA 
+-------------------------------------------------------------------------------
+PK	Area_Id
+	Area_Name
+FK	City_Id
+
+create table area
+(
+	Area_Id int NOT NULL AUTO_INCREMENT,
+	Area_Name varchar(255) NOT NULL,
+	City_Id int NOT NULL,
+	PRIMARY KEY (Area_Id),
+	FOREIGN KEY (City_Id) REFERENCES city(City_Id)
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('1', 'Viman Nagar', '1');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('2', 'Yerwada', '1');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('3', 'Katraj', '1');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('4', 'Kamptee', '2');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('5', 'Balkonda', '3');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('6', 'Char Minar', '4');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('7', 'Bhagal', '5');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('8', 'Dabholi', '6');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('9', 'Alok Nagar', '7');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('10', 'Bairagara', '8');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('11', 'Chowk', '9');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('12', 'Tulsi Nagar', '10');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('13', 'Patna Museum', '11');
+INSERT INTO `connect_to_care`.`area` (`area_id`, `area_name`, `city_id`) VALUES ('14', 'Golghar ', '12');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HOSPITAL
+-------------------------------------------------------------------------------
+PK (AID)	Hospital_Id
+		Hospital_Name
+		Mobile_Number
+		Speciality
+FK		Area_Id
+FK		Login_Id
+
+create table hospital
+(
+	Hospital_Id int NOT NULL AUTO_INCREMENT, 
+	Hospital_Name varchar(255) NOT NULL,
+	Mobile_Number varchar(255) NOT NULL,
+	Speciality varchar(255) NOT NULL,
+	Area_Id int NOT NULL,
+	Login_Id int NOT NULL,
+	PRIMARY KEY (Hospital_Id),
+	FOREIGN KEY (Area_Id) REFERENCES area(Area_Id),
+	FOREIGN KEY (Login_Id) REFERENCES login(Login_Id)	
+	
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`hospital` (`hospital_id`, `hospital_name`, `mobile_number`, `speciality`, `area_id`, `login_id`) VALUES ('1', 'Ruby Hospital', '9988776655', 'Multispeciality', '1', '9');
+INSERT INTO `connect_to_care`.`hospital` (`hospital_id`, `hospital_name`, `mobile_number`, `speciality`, `area_id`, `login_id`) VALUES ('2', 'Sancheti Hospital', '9988776658', 'Multispeciality', '4', '10');
+INSERT INTO `connect_to_care`.`hospital` (`hospital_id`, `hospital_name`, `mobile_number`, `speciality`, `area_id`, `login_id`) VALUES ('3', 'Sanjivani Hospital', '9988776657', 'Multispeciality', '7', '11');
+INSERT INTO `connect_to_care`.`hospital` (`hospital_id`, `hospital_name`, `mobile_number`, `speciality`, `area_id`, `login_id`) VALUES ('4', 'Ghati Hospital', '9988776656', 'Multispeciality', '9', '12');
+INSERT INTO `connect_to_care`.`hospital` (`hospital_id`, `hospital_name`, `mobile_number`, `speciality`, `area_id`, `login_id`) VALUES ('5', 'Sangram Hospiatal', '9988776680', 'Multispeciality', '7', '13');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+DOCTOR
+-------------------------------------------------------------------------------
+PK	Doctor_Id
+	aadhar_number
+	dob
+	first_name
+	last_name
+	gender
+	Graduation
+	Post_Graduation
+	Mobile_Number
+	Specialization
+FK	Login_Id
+FK	hospital_id        
+
+create table doctor
+(
+	Doctor_Id int NOT NULL AUTO_INCREMENT,
+	aadhar_number varcahr(255) NOT NULL,
+	dob date NOT NULL,
+	first_name varchar(255) NOT NULL,
+	last_name varchar(255) NOT NULL,
+	gender varchar(255) NOT NULL,
+	Graduation varchar(255) NOT NULL,
+	Post_Graduation varchar(255) NOT NULL,
+	Mobile_Number varchar(255) NOT NULL,
+	Specialization varchar(255) NOT NULL,
+	Login_Id int NOT NULL,
+	hospital_id int NOT NULL,
+	PRIMARY KEY (Doctor_Id),
+	FOREIGN KEY (Login_Id) REFERENCES login(Login_Id),
+	FOREIGN KEY (hospital_id ) REFERENCES hospital(hospital_id)	
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`DOCTOR` (`doctor_id`, `aadhar_number`, `dob`, `first_name`, `gender`, `graduation`, `last_name`, `mobile_number`, `post_graduation`, `speciality`, `login_id`) VALUES ('1', '123456789012', '1990-02-29', 'Ram', 'Male ', 'BAMS', 'Sharma', '9421878780', 'MD', 'Gynaecology', '2');
+INSERT INTO `connect_to_care`.`DOCTOR` (`doctor_id`, `aadhar_number`, `dob`, `first_name`, `gender`, `graduation`, `last_name`, `mobile_number`, `post_graduation`, `speciality`, `login_id`) VALUES ('2', '123456789013', '1980-07-05', 'Shyam', 'Male ', 'BHMS', 'Pawar', '9421878781', 'MS', 'Orthopaedics', '3');
+INSERT INTO `connect_to_care`.`DOCTOR` (`doctor_id`, `aadhar_number`, `dob`, `first_name`, `gender`, `graduation`, `last_name`, `mobile_number`, `post_graduation`, `speciality`, `login_id`) VALUES ('3', '123456789014', '1985-02-10', 'Govinnd ', 'Male ', 'BDS', 'Deshmukh', '9421878782', 'MD', 'Pathology', '4');
+INSERT INTO `connect_to_care`.`DOCTOR` (`doctor_id`, `aadhar_number`, `dob`, `first_name`, `gender`, `graduation`, `last_name`, `mobile_number`, `post_graduation`, `speciality`, `login_id`) VALUES ('4', '123456789015', '1970-09-11', 'Radha ', 'Female', 'MBBS', 'Patil', '9421878783', 'MD', 'Radiology', '5');
+INSERT INTO `connect_to_care`.`DOCTOR` (`doctor_id`, `aadhar_number`, `dob`, `first_name`, `gender`, `graduation`, `last_name`, `mobile_number`, `post_graduation`, `speciality`, `login_id`) VALUES ('5', '123456789016', '1975-12-22', 'Pandit', 'Male ', 'MBBS', 'Deshmukh', '9421878784', 'MS', 'Leprosy', '6');
+INSERT INTO `connect_to_care`.`DOCTOR` (`doctor_id`, `aadhar_number`, `dob`, `first_name`, `gender`, `graduation`, `last_name`, `mobile_number`, `post_graduation`, `speciality`, `login_id`) VALUES ('6', '123456789017', '1990-10-17', 'Prakash', 'Male ', 'BPT', 'Deshpande', '9421878785', 'MD', 'Microbiology', '7');
+INSERT INTO `connect_to_care`.`DOCTOR` (`doctor_id`, `aadhar_number`, `dob`, `first_name`, `gender`, `graduation`, `last_name`, `mobile_number`, `post_graduation`, `speciality`, `login_id`) VALUES ('7', '123456789018', '1985-06-01', 'Shital ', 'Female', 'BSMS', 'Kulkarni', '9421878786', 'MS', 'Dermatology', '8');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PATIENT 
+-------------------------------------------------------------------------------
+PK	Patient_Id
+	aadhar_number
+	blood_group
+	dob
+	first_name
+	last_name
+	gender
+	Mobile_Number
+FK	Login_Id
+
+Create Table patient
+(
+	Patient_Id int NOT NULL AUTO_INCREMENT,
+	aadhar_number varchar(255) NOT NULL,
+	blood_group varchar(255) NOT NULL,
+	dob date NOT NULL,
+	first_name varchar(255) NOT NULL,
+	last_name varchar(255) NOT NULL,
+	gender  varchar(255) NOT NULL,
+	Mobile_Number varchar(255) NOT NULL,
+	Login_Id int NOT NULL,
+	PRIMARY KEY (Patient_Id),
+	FOREIGN KEY (Login_Id) REFERENCES Login(Login_Id)	
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`patient` (`patient_id`, `aadhar_number`, `blood_group`, `dob`, `first_name`, `gender`, `last_name`, `mobile_number`, `login_id`) VALUES ('1', '891234567891', 'O+', '1997-10-14', 'Sachin', 'Male', 'Warhade', '7766854544', '1');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+APPOINTMENT 
+-------------------------------------------------------------------------------
+PK	Appointment_Id
+	Appointment_Date
+	Appointment_Time
+	Appointment_Type
+	Canceled_by
+	Status
+FK	Doctor_Id
+FK	Patient_Id
+
+create table appointment
+(
+	Appointment_Id int NOT NULL AUTO_INCREMENT,
+	Appointment_Date date NOT NULL,
+	Appointment_Time time NOT NULL
+	Appointment_Type varchar(255) NULL,
+	Canceled_by varchar(255) NULL,
+	Status varchar(255) NULL,
+	Doctor_Id int NOT NULL,
+	Patient_Id int NOT NULL,
+	PRIMARY KEY (Appointment_Id),
+	FOREIGN KEY (Doctor_Id) REFERENCES doctor(Doctor_Id),
+	FOREIGN KEY (Patient_Id) REFERENCES patient(Patient_Id)
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`Appointment` (`appointment_id`, `appointment_date`, `appointment_time`, `appointment_type`, `status`, `doctor_id`, `patient_id`) VALUES ('1', '2022-09-30', '12:00:00', 'Walk-in', 'Scheduled', '5', '1');
+INSERT INTO `connect_to_care`.`Appointment` (`appointment_id`, `appointment_date`, `appointment_time`, `appointment_type`, `cancelled_by`, `status`, `doctor_id`, `patient_id`) VALUES ('2', '2022-09-20', '15:30:00', 'Walk-in ', 'Patient', 'Cancelled', '3', '1');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SLOTS		
+-------------------------------------------------------------------------------
+PK	Slot_Id
+	Break_Time
+	End_Time
+	Slot_Duration
+	Start_Time
+	Status
+	Weekday
+FK	Doctor_Id
+
+Create Table slots
+(
+	Slot_Id int NOT NULL AUTO_INCREMENT,
+	Break_Time time NOT NULL,
+	End_Time time NOT NULL,
+	Slot_Duration int NOT NULL,
+	Start_Time time NOT NULL,
+	Status varchar(255) NULL,
+	Weekday varchar(255) NOT NULL,
+	Doctor_Id int NOT NULL,
+	PRIMARY KEY(Slot_Id),
+	FOREIGN KEY (Doctor_Id) REFERENCES Doctor(Doctor_Id)
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`slots` (`slot_id`, `break_time`, `end_time`, `slot_duration`, `start_time`, `status`, `weekday`, `doctor_id`) VALUES ('1', '14:00:00', '18:00:00', '30', '09:00:00', 'Available', 'Monday', '5');
+INSERT INTO `connect_to_care`.`slots` (`slot_id`, `break_time`, `end_time`, `slot_duration`, `start_time`, `status`, `weekday`, `doctor_id`) VALUES ('2', '14:00:00', '20:00:00', '15', '09:00:00', 'Available', 'Tuesday', '3');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+PARAMETERS
+-------------------------------------------------------------------------------
+PK	Parameter_Id
+	Blood Group
+	Blood Pressure
+	Blood Sugar
+	BMI
+	HB
+	Height
+	Weight
+FK	Patient_Id
+
+Create Table parameter
+(
+	Parameter_Id int NOT NULL AUTO_INCREMENT,
+	Blood_Group varchar(255) NOT NULL,
+	Blood_Pressure varchar(255) NULL,
+	Blood_Sugar varchar(255) NULL,
+	BMI varchar(255) NOT NULL,
+	HB varchar(255) NOT NULL,
+	Height varchar(255) NOT NULL,
+	Weight varchar(255) NOT NULL,
+	patient_id int NOT NULL,
+	PRIMARY KEY (Parameter_Id),
+	FOREIGN KEY (Patient_id) REFERENCES patient(Patient_id)
+	
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`parameter` (`parameter_id`, `blood_group`, `blood_pressure`, `blood_sugar`, `bmi`, `hb`, `height`, `weight`, `patient_id`) VALUES ('1', 'O+', '120', '110', '80', '90', '5.6', '70', '1');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HEALTH TIMELINE
+-------------------------------------------------------------------------------
+PK	Health_Id
+	Advice
+	Date
+	Medicines
+	Remark
+	Symptoms
+FK	Doctor_Id
+FK	Patient_Id
+
+create table health_timeline
+(
+	Health_Id int NOT NULL AUTO_INCREMENT,
+	Advice varchar(255) NOT NULL,
+	Date date NOT NULL,
+	Medicines varchar(255) NOT NULL,  
+	Remark varchar(255) NULL,
+	Symptoms varchar(255) NOT NULL,  
+	Doctor_Id int NOT NULL,
+	Patient_Id int NOT NULL,
+	PRIMARY KEY (Health_Id),
+	FOREIGN KEY (Doctor_Id) REFERENCES doctor(Doctor_Id),
+	FOREIGN KEY (Patient_Id) REFERENCES patient(Patient_Id)	
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO `connect_to_care`.`HEALTH_TIMELINE` (`health_id`, `advice`, `date`, `medicines`, `remark`, `symptoms`, `doctor_id`, `patient_id`) VALUES ('1', 'Take Care ', '2022-09-30', 'Dolo 650, Citrizen', 'Take Tablets for two days.', 'Cold, Fever', '5', '1');
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
